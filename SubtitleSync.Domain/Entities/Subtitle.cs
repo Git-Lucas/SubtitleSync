@@ -17,7 +17,7 @@ public class Subtitle
         {
             if (!uniqueValues.Add(subtitleLine.Number))
             {
-                throw new Exception($"O número {subtitleLine.Number} está repetido.");
+                throw new ArgumentException($"O número {subtitleLine.Number} está repetido.");
             }
         }
     }
