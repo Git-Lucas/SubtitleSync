@@ -4,7 +4,7 @@ namespace SubtitleSync.Domain.Tests.Unit.ValueObjects;
 public class DurationTests
 {
     [Fact]
-    public void Duration_WhenInvalidTimes_ShouldArgumentException()
+    public void Duration_WhenInvalidTimes_ThrowsArgumentException()
     {
         TimeSpan endTime = TimeSpan.FromSeconds(1);
         TimeSpan invalidStartTime = endTime.Add(TimeSpan.FromSeconds(1));

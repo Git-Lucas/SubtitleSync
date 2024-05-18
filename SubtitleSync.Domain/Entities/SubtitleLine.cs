@@ -5,8 +5,8 @@ public class SubtitleLine
 {
     public int Number { get; private set; }
     public TimeSpan StartTime { get; private set; }
-    public TimeSpan EndTime { get; private set; } 
-    public string Text { get; private set; } 
+    public TimeSpan EndTime { get; private set; }
+    public string Text { get; private set; }
 
     public SubtitleLine(int number, TimeSpan startTime, TimeSpan endTime, string text)
     {
