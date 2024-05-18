@@ -16,7 +16,7 @@ public record Duration
     {
         if (startTime > endTime)
         {
-            throw new ArgumentException("O tempo de início não pode ser maior do que o tempo final.");
+            throw new ArgumentException($"O tempo de início não pode ser maior do que o tempo final. Tempo de início: {startTime} | Tempo final: {endTime}");
         }
     }
 }
