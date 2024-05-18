@@ -29,7 +29,7 @@ public class SubtitleTests
     }
 
     [Fact]
-    public void Subtitle_WhenConstructorWithDuplicatedNumber_ShouldArgumentException()
+    public void Subtitle_WhenConstructorWithDuplicatedNumber_ThrowsArgumentException()
     {
         int repeatedNumber = 1;
         IEnumerable<SubtitleLine> lines =

@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SubtitleSync.Domain\SubtitleSync.Domain.csproj" />
+    <ProjectReference Include="..\..\SubtitleSync.Domain\SubtitleSync.Domain.csproj" />
   </ItemGroup>
 
 </Project>
