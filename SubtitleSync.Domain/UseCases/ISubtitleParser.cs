@@ -3,5 +3,5 @@
 namespace SubtitleSync.Domain.UseCases;
 public interface ISubtitleParser
 {
-    Subtitle Parse(string filePath);
+    Task<Subtitle> ExecuteAsync(string filePath);
 }
