@@ -1,13 +1,16 @@
 ﻿using SubtitleSync.Domain.Entities;
+using SubtitleSync.Domain.UseCases.Parser.DTOs;
 using System.Globalization;
 
 namespace SubtitleSync.Domain.UseCases.Parser.DomainServices;
 public class Converter
 {
-    public static IEnumerable<SubtitleLine> Execute(string[] content, char fractionalSeparator)
+    public static SubtitleParserResult Execute(string[] content, char fractionalSeparator)
     {
-        List<SubtitleLine> result = [];
         int index = 0;
+        List<SubtitleLine> lines = [];
+        List<SubtitleParserError> errors = [];
+
         while (index < content.Length)
         {
             if (!int.TryParse(content[index], out int number))
@@ -30,9 +33,24 @@ public class Converter
             }
             index++;
 
-            result.Add(new SubtitleLine(number, startTime, endTime, string.Join("\n", text)));
+            try
+            {
+                lines.Add(new SubtitleLine(number, startTime, endTime, string.Join("\n", text)));
+            }
+            catch (Exception ex)
+            {
+                errors.Add(new SubtitleParserError(number, ex.Message));
+                continue;
+            }
         }
 
-        return result;
+        if (errors.Count > 0)
+        {
+            return new SubtitleParserFailure(errors);
+        }
+
+        Subtitle subtitle = new(lines);
+        return new SubtitleParserSuccess(subtitle);
+
     }
 }

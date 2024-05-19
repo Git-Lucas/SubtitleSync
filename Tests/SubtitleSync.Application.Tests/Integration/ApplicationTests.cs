@@ -28,16 +28,16 @@ public class ApplicationTests
         string expectedFilePath = Path.Combine(pathFile, "SubtitleSync_ProcessedSubtitles.srt");
 
         //Act
-        Subtitle subtitle = await _subtitleParser.ExecuteAsync(subtitleParserRequest);
-        List<TimeSpan> startTimesBeforeProcessing = subtitle.Lines.Select(x => x.Duration.StartTime).ToList();
-        List<TimeSpan> endTimesBeforeProcessing = subtitle.Lines.Select(x => x.Duration.EndTime).ToList();
+        SubtitleParserSuccess subtitleParserSuccess = (SubtitleParserSuccess)await _subtitleParser.ExecuteAsync(subtitleParserRequest);
+        List<TimeSpan> startTimesBeforeProcessing = subtitleParserSuccess.Subtitle.Lines.Select(x => x.Duration.StartTime).ToList();
+        List<TimeSpan> endTimesBeforeProcessing = subtitleParserSuccess.Subtitle.Lines.Select(x => x.Duration.EndTime).ToList();
 
-        ApplyOffsetRequest applyOffsetRequest = new(subtitle, offset);
+        ApplyOffsetRequest applyOffsetRequest = new(subtitleParserSuccess.Subtitle, offset);
         _subtitleProcessor.ApplyOffset(applyOffsetRequest);
-        List<TimeSpan> startTimesAfterProcessing = subtitle.Lines.Select(x => x.Duration.StartTime).ToList();
-        List<TimeSpan> endTimesAfterProcessing = subtitle.Lines.Select(x => x.Duration.EndTime).ToList();
+        List<TimeSpan> startTimesAfterProcessing = subtitleParserSuccess.Subtitle.Lines.Select(x => x.Duration.StartTime).ToList();
+        List<TimeSpan> endTimesAfterProcessing = subtitleParserSuccess.Subtitle.Lines.Select(x => x.Duration.EndTime).ToList();
 
-        SubtitleWriterRequest subtitleWriterRequest = new(subtitle, pathFile);
+        SubtitleWriterRequest subtitleWriterRequest = new(subtitleParserSuccess.Subtitle, pathFile);
         await _subtitleWriter.ExecuteAsync(subtitleWriterRequest);
 
         //Assert
