@@ -1,4 +1,7 @@
-﻿namespace SubtitleSync.Domain.Entities;
+﻿using SubtitleSync.Domain.Extensions;
+using System.Text;
+
+namespace SubtitleSync.Domain.Entities;
 public class Subtitle
 {
     public IEnumerable<SubtitleLine> Lines { get; private set; }
@@ -44,5 +47,20 @@ public class Subtitle
         Lines
             .ToList()
             .ForEach(subtitleLine => subtitleLine.ApplyOffset(offset));
+    }
+
+    public string ToSrt()
+    {
+        StringBuilder stringBuilder = new();
+
+        foreach (SubtitleLine line in Lines)
+        {
+            stringBuilder.AppendLine(line.Number.Value.ToString());
+            stringBuilder.AppendLine($"{line.StartTime.ToFormatSrt()} --> {line.EndTime.ToFormatSrt()}");
+            stringBuilder.AppendLine(line.Text);
+            stringBuilder.AppendLine();
+        }
+
+        return stringBuilder.ToString();
     }
 }
