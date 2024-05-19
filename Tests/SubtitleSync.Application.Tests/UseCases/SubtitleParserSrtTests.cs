@@ -1,7 +1,7 @@
 ﻿using SubtitleSync.Application.UseCases;
-using SubtitleSync.Domain.Entities;
 using SubtitleSync.Domain.UseCases.Parser;
 using SubtitleSync.Domain.UseCases.Parser.DTOs;
+using SubtitleSync.Domain.UseCases.Parser.ResultPattern;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using Xunit.Abstractions;

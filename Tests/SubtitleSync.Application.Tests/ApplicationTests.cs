@@ -1,7 +1,7 @@
 ﻿using SubtitleSync.Application.UseCases;
-using SubtitleSync.Domain.Entities;
 using SubtitleSync.Domain.UseCases.Parser;
 using SubtitleSync.Domain.UseCases.Parser.DTOs;
+using SubtitleSync.Domain.UseCases.Parser.ResultPattern;
 using SubtitleSync.Domain.UseCases.Processor;
 using SubtitleSync.Domain.UseCases.Processor.DTOs;
 using SubtitleSync.Domain.UseCases.Writer;
@@ -28,7 +28,8 @@ public class ApplicationTests
         string expectedFilePath = Path.Combine(pathFile, "SubtitleSync_ProcessedSubtitles.srt");
 
         //Act
-        SubtitleParserSuccess subtitleParserSuccess = (SubtitleParserSuccess)await _subtitleParser.ExecuteAsync(subtitleParserRequest);
+        SubtitleParserResult subtitleParserResult = await _subtitleParser.ExecuteAsync(subtitleParserRequest);
+        SubtitleParserSuccess subtitleParserSuccess = Assert.IsType<SubtitleParserSuccess>(subtitleParserResult);
         List<TimeSpan> startTimesBeforeProcessing = subtitleParserSuccess.Subtitle.Lines.Select(x => x.Duration.StartTime).ToList();
         List<TimeSpan> endTimesBeforeProcessing = subtitleParserSuccess.Subtitle.Lines.Select(x => x.Duration.EndTime).ToList();
 

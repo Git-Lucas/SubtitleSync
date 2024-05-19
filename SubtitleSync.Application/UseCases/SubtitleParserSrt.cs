@@ -2,6 +2,7 @@
 using SubtitleSync.Domain.UseCases.Parser;
 using SubtitleSync.Domain.UseCases.Parser.DomainServices;
 using SubtitleSync.Domain.UseCases.Parser.DTOs;
+using SubtitleSync.Domain.UseCases.Parser.ResultPattern;
 
 namespace SubtitleSync.Application.UseCases;
 public class SubtitleParserSrt : ISubtitleParser

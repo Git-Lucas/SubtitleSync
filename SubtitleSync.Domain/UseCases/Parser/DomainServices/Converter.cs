@@ -1,5 +1,5 @@
 ﻿using SubtitleSync.Domain.Entities;
-using SubtitleSync.Domain.UseCases.Parser.DTOs;
+using SubtitleSync.Domain.UseCases.Parser.ResultPattern;
 using System.Globalization;
 
 namespace SubtitleSync.Domain.UseCases.Parser.DomainServices;
