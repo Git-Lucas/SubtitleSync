@@ -6,6 +6,7 @@ public class Converter
 {
     public static IEnumerable<SubtitleLine> Execute(string[] content, char fractionalSeparator)
     {
+        List<SubtitleLine> result = [];
         int index = 0;
         while (index < content.Length)
         {
@@ -29,7 +30,9 @@ public class Converter
             }
             index++;
 
-            yield return new SubtitleLine(number, startTime, endTime, string.Join("\n", text));
+            result.Add(new SubtitleLine(number, startTime, endTime, string.Join("\n", text)));
         }
+
+        return result;
     }
 }
