@@ -1,5 +1,6 @@
 ﻿using SubtitleSync.Domain.Entities;
 using SubtitleSync.Domain.UseCases.Parser.ResultPattern;
+using SubtitleSync.Domain.ValueObjects;
 using System.Globalization;
 
 namespace SubtitleSync.Domain.UseCases.Parser.DomainServices;
@@ -13,11 +14,7 @@ public class Converter
 
         while (index < content.Length)
         {
-            if (!int.TryParse(content[index], out int number))
-            {
-                index++;
-                continue;
-            }
+            string numberSrt = content[index];
             index++;
 
             var timeParts = content[index].Split(" --> ");
@@ -35,11 +32,11 @@ public class Converter
 
             try
             {
-                lines.Add(new SubtitleLine(number, startTime, endTime, string.Join("\n", text)));
+                lines.Add(new SubtitleLine(numberSrt, startTime, endTime, string.Join("\n", text)));
             }
             catch (Exception ex)
             {
-                errors.Add(new SubtitleParserError(number, ex.Message));
+                errors.Add(new SubtitleParserError(numberSrt, ex.Message));
                 continue;
             }
         }

@@ -9,7 +9,7 @@ public class NumberTests
         int number = -1;
 
         ArgumentException exception = Assert.Throws<ArgumentException>(() => new Number(number));
-        Assert.Equal($"O número {number} deve ser maior do que 0.", exception.Message);
+        Assert.Equal($"O número '{number}' deve ser maior do que 0.", exception.Message);
     }
 
     [Fact]
