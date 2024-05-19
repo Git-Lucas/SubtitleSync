@@ -3,5 +3,5 @@
 namespace SubtitleSync.Domain.UseCases.Writer;
 public interface ISubtitleWriter
 {
-    void Write(SubtitleWriterRequest subtitleWriterRequest);
+    Task ExecuteAsync(SubtitleWriterRequest subtitleWriterRequest);
 }
