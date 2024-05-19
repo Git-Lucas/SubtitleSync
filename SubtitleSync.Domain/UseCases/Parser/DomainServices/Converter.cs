@@ -4,11 +4,32 @@ using SubtitleSync.Domain.UseCases.Parser.ResultPattern;
 namespace SubtitleSync.Domain.UseCases.Parser.DomainServices;
 public class Converter
 {
-    public static SubtitleParserResult Execute(string[] srt, char fractionalSeparator)
+    private readonly List<SubtitleLine> _subtitleLines = [];
+    private readonly List<InvalidLine> _invalidLines = [];
+
+    public SubtitleParserResult ExecuteSrt(string[] srt, char fractionalSeparator)
+    {
+        ConvertLines(srt, fractionalSeparator);
+
+        if (_invalidLines.Count > 0)
+        {
+            return new SubtitleParserInvalidLines(_invalidLines);
+        }
+
+        try
+        {
+            Subtitle subtitle = new(_subtitleLines);
+            return new SubtitleParserSuccess(subtitle);
+        }
+        catch (Exception ex)
+        {
+            return new SubtitleParserInvalidSubtitle(ex.Message);
+        }
+    }
+
+    private void ConvertLines(string[] srt, char fractionalSeparator)
     {
         int line = 0;
-        List<SubtitleLine> subtitleLines = [];
-        List<SubtitleParserError> errors = [];
 
         while (line < srt.Length)
         {
@@ -28,22 +49,13 @@ public class Converter
 
             try
             {
-                subtitleLines.Add(new SubtitleLine(numberSrt, timecodesSrt, fractionalSeparator, textsSrt));
+                _subtitleLines.Add(new SubtitleLine(numberSrt, timecodesSrt, fractionalSeparator, textsSrt));
             }
             catch (Exception ex)
             {
-                errors.Add(new SubtitleParserError(numberSrt, ex.Message));
+                _invalidLines.Add(new InvalidLine(numberSrt, ex.Message));
                 continue;
             }
         }
-
-        if (errors.Count > 0)
-        {
-            return new SubtitleParserFailure(errors);
-        }
-
-        Subtitle subtitle = new(subtitleLines);
-        return new SubtitleParserSuccess(subtitle);
-
     }
 }

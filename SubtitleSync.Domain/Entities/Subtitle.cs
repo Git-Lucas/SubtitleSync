@@ -1,5 +1,4 @@
-﻿using SubtitleSync.Domain.Extensions;
-using System.Text;
+﻿using System.Text;
 
 namespace SubtitleSync.Domain.Entities;
 public class Subtitle

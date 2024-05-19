@@ -9,7 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubtitleSync.Application", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80DF7DE0-A450-422E-8902-FCD1CE3E0FA3}"
 	ProjectSection(SolutionItems) = preProject
-		SrtExamples\Invalid_TheMatrix1999.srt = SrtExamples\Invalid_TheMatrix1999.srt
+		SrtExamples\InvalidLines_TheMatrix1999.srt = SrtExamples\InvalidLines_TheMatrix1999.srt
+		SrtExamples\InvalidSubtitle_Inception2010.srt = SrtExamples\InvalidSubtitle_Inception2010.srt
 		SrtExamples\Valid_Inception2010.srt = SrtExamples\Valid_Inception2010.srt
 		SrtExamples\Valid_TheMatrix1999.srt = SrtExamples\Valid_TheMatrix1999.srt
 	EndProjectSection

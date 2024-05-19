@@ -11,7 +11,8 @@ public class SubtitleParserSrtTests(ITestOutputHelper testOutputHelper)
 {
     private readonly ITestOutputHelper _testOutputHelper = testOutputHelper;
     private readonly string _filePathValidSrt = @"..\..\..\..\..\SrtExamples\Valid_TheMatrix1999.srt";
-    private readonly string _filePathInvalidSrt = @"..\..\..\..\..\SrtExamples\Invalid_TheMatrix1999.srt";
+    private readonly string _filePathInvalidLinesSrt = @"..\..\..\..\..\SrtExamples\InvalidLines_TheMatrix1999.srt";
+    private readonly string _filePathInvalidSubtitleSrt = @"..\..\..\..\..\SrtExamples\InvalidSubtitle_Inception2010.srt";
     private readonly ISubtitleParser _subtitleParser = new SubtitleParserSrt();
 
     [Fact]
@@ -23,28 +24,45 @@ public class SubtitleParserSrtTests(ITestOutputHelper testOutputHelper)
         SubtitleParserResult subtitleParserResult = await _subtitleParser.ExecuteAsync(dto);
 
         SubtitleParserSuccess subtitleParserSuccess = Assert.IsType<SubtitleParserSuccess>(subtitleParserResult);
-        Assert.Equal(1343, subtitleParserSuccess.Subtitle.Lines.Count());
         _testOutputHelper.WriteLine(JsonSerializer.Serialize(subtitleParserSuccess, new JsonSerializerOptions()
         {
             Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             WriteIndented = true
         }));
+        Assert.Equal(1343, subtitleParserSuccess.Subtitle.Lines.Count());
     }
 
     [Fact]
-    public async Task ParseAsync_WhenInvalidFile_ReturnsParserFailure()
+    public async Task ParseAsync_WhenInvalidLines_ReturnsTypeParserInvalidLines()
     {
         char franceFractionalSeparator = ',';
-        SubtitleParserRequest dto = new(_filePathInvalidSrt, franceFractionalSeparator);
+        SubtitleParserRequest dto = new(_filePathInvalidLinesSrt, franceFractionalSeparator);
 
         SubtitleParserResult subtitleParserResult = await _subtitleParser.ExecuteAsync(dto);
 
-        SubtitleParserFailure subtitleParserFailure = Assert.IsType<SubtitleParserFailure>(subtitleParserResult);
-        Assert.NotEmpty(subtitleParserFailure.Errors);
-        _testOutputHelper.WriteLine(JsonSerializer.Serialize(subtitleParserFailure, new JsonSerializerOptions()
+        SubtitleParserInvalidLines invalidLines = Assert.IsType<SubtitleParserInvalidLines>(subtitleParserResult);
+        _testOutputHelper.WriteLine(JsonSerializer.Serialize(invalidLines, new JsonSerializerOptions()
         {
             Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             WriteIndented = true
         }));
+        Assert.NotEmpty(invalidLines.Errors);
+    }
+
+    [Fact]
+    public async Task ParseAsync_WhenInvalidSubtitle_ReturnsTypeParserInvalidSubtitle()
+    {
+        char franceFractionalSeparator = ',';
+        SubtitleParserRequest dto = new(_filePathInvalidSubtitleSrt, franceFractionalSeparator);
+
+        SubtitleParserResult subtitleParserResult = await _subtitleParser.ExecuteAsync(dto);
+
+        SubtitleParserInvalidSubtitle invalidSubtitle = Assert.IsType<SubtitleParserInvalidSubtitle>(subtitleParserResult);
+        _testOutputHelper.WriteLine(JsonSerializer.Serialize(invalidSubtitle, new JsonSerializerOptions()
+        {
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+            WriteIndented = true
+        }));
+        Assert.NotEmpty(invalidSubtitle.Reason);
     }
 }

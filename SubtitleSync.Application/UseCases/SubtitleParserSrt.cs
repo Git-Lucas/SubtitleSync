@@ -1,5 +1,4 @@
-﻿using SubtitleSync.Domain.Entities;
-using SubtitleSync.Domain.UseCases.Parser;
+﻿using SubtitleSync.Domain.UseCases.Parser;
 using SubtitleSync.Domain.UseCases.Parser.DomainServices;
 using SubtitleSync.Domain.UseCases.Parser.DTOs;
 using SubtitleSync.Domain.UseCases.Parser.ResultPattern;
@@ -12,7 +11,9 @@ public class SubtitleParserSrt : ISubtitleParser
         dto.Validate();
 
         string[] content = await File.ReadAllLinesAsync(dto.FilePath);
-        SubtitleParserResult subtitleParserResult = Converter.Execute(content, dto.FractionalSeparator);
+
+        Converter converterDomainService = new();
+        SubtitleParserResult subtitleParserResult = converterDomainService.ExecuteSrt(content, dto.FractionalSeparator);
 
         return subtitleParserResult;
     }
