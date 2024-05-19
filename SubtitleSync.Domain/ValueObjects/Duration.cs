@@ -1,4 +1,5 @@
 ﻿using SubtitleSync.Domain.Extensions;
+using System.Globalization;
 
 namespace SubtitleSync.Domain.ValueObjects;
 public record Duration
@@ -12,6 +13,26 @@ public record Duration
 
         StartTime = startTime;
         EndTime = endTime;
+    }
+
+    public static Duration CreateFromSrt(string timecodesSrt, char fractionalSeparator)
+    {
+        string format = @$"hh\:mm\:ss\{fractionalSeparator}fff";
+        TimeSpan startTime;
+        TimeSpan endTime;
+
+        try
+        {
+            string[] timeParts = timecodesSrt.Split(" --> ");
+            startTime = TimeSpan.ParseExact(timeParts[0], format, CultureInfo.InvariantCulture);
+            endTime = TimeSpan.ParseExact(timeParts[1], format, CultureInfo.InvariantCulture);
+        }
+        catch (Exception)
+        {
+            throw new ArgumentException($"Não foi possível ler o seguinte código temporal: {timecodesSrt}");
+        }
+
+        return new Duration(startTime, endTime);
     }
 
     public string ToFormatStr()

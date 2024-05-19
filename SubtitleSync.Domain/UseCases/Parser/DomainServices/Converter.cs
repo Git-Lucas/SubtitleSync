@@ -17,9 +17,7 @@ public class Converter
             string numberSrt = content[index];
             index++;
 
-            var timeParts = content[index].Split(" --> ");
-            var startTime = TimeSpan.ParseExact(timeParts[0], @$"hh\:mm\:ss\{fractionalSeparator}fff", CultureInfo.InvariantCulture);
-            var endTime = TimeSpan.ParseExact(timeParts[1], @$"hh\:mm\:ss\{fractionalSeparator}fff", CultureInfo.InvariantCulture);
+            string timecodesSrt = content[index];
             index++;
 
             var text = new List<string>();
@@ -32,7 +30,7 @@ public class Converter
 
             try
             {
-                lines.Add(new SubtitleLine(numberSrt, startTime, endTime, string.Join("\n", text)));
+                lines.Add(new SubtitleLine(numberSrt, timecodesSrt, fractionalSeparator, string.Join("\n", text)));
             }
             catch (Exception ex)
             {

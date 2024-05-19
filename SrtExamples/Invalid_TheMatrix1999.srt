@@ -8,12 +8,12 @@ You're not to relieve me.
 I know, but I felt like taking a shift.
 
 3
-00:00:57,182 --> 00:00:59,560
+00:00:57,182 -> 00:00:59,560
 You like him, don't you?
 You like watching him.
 
 4
-00:00:59,810 --> 00:01:02,813
+00:00:59.810 --> 00:01:02,813
 Don't be ridiculous.
 We're going to kill him.
 
