@@ -28,9 +28,9 @@ public class SubtitleProcessorTests
 
         _subtitleProcessor.ApplyOffset(dto);
 
-        Assert.Equal(TimeSpan.FromSeconds(9), subtitle.Lines.First(x => x.Number.Value == 1).StartTime);
-        Assert.Equal(TimeSpan.FromSeconds(11), subtitle.Lines.First(x => x.Number.Value == 1).EndTime);
-        Assert.Equal(TimeSpan.FromSeconds(12), subtitle.Lines.First(x => x.Number.Value == 2).StartTime);
-        Assert.Equal(TimeSpan.FromSeconds(14), subtitle.Lines.First(x => x.Number.Value == 2).EndTime);
+        Assert.Equal(TimeSpan.FromSeconds(9), subtitle.Lines.First(x => x.Number.Value == 1).Duration.StartTime);
+        Assert.Equal(TimeSpan.FromSeconds(11), subtitle.Lines.First(x => x.Number.Value == 1).Duration.EndTime);
+        Assert.Equal(TimeSpan.FromSeconds(12), subtitle.Lines.First(x => x.Number.Value == 2).Duration.StartTime);
+        Assert.Equal(TimeSpan.FromSeconds(14), subtitle.Lines.First(x => x.Number.Value == 2).Duration.EndTime);
     }
 }

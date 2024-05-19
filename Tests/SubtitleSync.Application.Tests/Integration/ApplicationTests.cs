@@ -29,13 +29,13 @@ public class ApplicationTests
 
         //Act
         Subtitle subtitle = await _subtitleParser.ExecuteAsync(subtitleParserRequest);
-        List<TimeSpan> startTimesBeforeProcessing = subtitle.Lines.Select(x => x.StartTime).ToList();
-        List<TimeSpan> endTimesBeforeProcessing = subtitle.Lines.Select(x => x.EndTime).ToList();
+        List<TimeSpan> startTimesBeforeProcessing = subtitle.Lines.Select(x => x.Duration.StartTime).ToList();
+        List<TimeSpan> endTimesBeforeProcessing = subtitle.Lines.Select(x => x.Duration.EndTime).ToList();
 
         ApplyOffsetRequest applyOffsetRequest = new(subtitle, offset);
         _subtitleProcessor.ApplyOffset(applyOffsetRequest);
-        List<TimeSpan> startTimesAfterProcessing = subtitle.Lines.Select(x => x.StartTime).ToList();
-        List<TimeSpan> endTimesAfterProcessing = subtitle.Lines.Select(x => x.EndTime).ToList();
+        List<TimeSpan> startTimesAfterProcessing = subtitle.Lines.Select(x => x.Duration.StartTime).ToList();
+        List<TimeSpan> endTimesAfterProcessing = subtitle.Lines.Select(x => x.Duration.EndTime).ToList();
 
         SubtitleWriterRequest subtitleWriterRequest = new(subtitle, pathFile);
         await _subtitleWriter.ExecuteAsync(subtitleWriterRequest);

@@ -37,16 +37,16 @@ public class Subtitle
     public void ApplyOffset(TimeSpan offset)
     {
         SubtitleLine firstLine = Lines.First(x => x.Number.Value == _minValue);
-        if (firstLine.StartTime.Add(offset) < TimeSpan.Zero)
+        if (firstLine.Duration.StartTime.Add(offset) < TimeSpan.Zero)
         {
             throw new ArgumentException(
                 "A aplicação do deslocamento temporal não pode provocar um tempo de início menor que 0. " +
-                $"Tempo inicial das legendas: {firstLine.StartTime} | Deslocamento temporal solicitado: {offset}");
+                $"Tempo inicial das legendas: {firstLine.Duration.StartTime} | Deslocamento temporal solicitado: {offset}");
         }
 
         Lines
             .ToList()
-            .ForEach(subtitleLine => subtitleLine.ApplyOffset(offset));
+            .ForEach(subtitleLine => subtitleLine.Duration.ApplyOffset(offset));
     }
 
     public string ToSrt()
@@ -56,7 +56,7 @@ public class Subtitle
         foreach (SubtitleLine line in Lines)
         {
             stringBuilder.AppendLine(line.Number.Value.ToString());
-            stringBuilder.AppendLine($"{line.StartTime.ToFormatSrt()} --> {line.EndTime.ToFormatSrt()}");
+            stringBuilder.AppendLine(line.Duration.ToFormatStr());
             stringBuilder.AppendLine(line.Text);
             stringBuilder.AppendLine();
         }

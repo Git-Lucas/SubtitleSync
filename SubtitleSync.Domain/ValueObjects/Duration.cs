@@ -1,8 +1,10 @@
-﻿namespace SubtitleSync.Domain.ValueObjects;
+﻿using SubtitleSync.Domain.Extensions;
+
+namespace SubtitleSync.Domain.ValueObjects;
 public record Duration
 {
-    public TimeSpan StartTime { get; }
-    public TimeSpan EndTime { get; }
+    public TimeSpan StartTime { get; private set; }
+    public TimeSpan EndTime { get; private set; }
 
     public Duration(TimeSpan startTime, TimeSpan endTime)
     {
@@ -10,6 +12,17 @@ public record Duration
 
         StartTime = startTime;
         EndTime = endTime;
+    }
+
+    public string ToFormatStr()
+    {
+        return $"{StartTime.ToFormatSrt()} --> {EndTime.ToFormatSrt()}";
+    }
+
+    internal void ApplyOffset(TimeSpan offset)
+    {
+        StartTime = StartTime.Add(offset);
+        EndTime = EndTime.Add(offset);
     }
 
     private static void Validate(TimeSpan startTime, TimeSpan endTime)
