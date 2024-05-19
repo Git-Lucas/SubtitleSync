@@ -18,11 +18,11 @@ public class ApplicationTests
     public async Task ParserProcessorAndWriter_WhenValidFile_ShouldCreateProcessedFile()
     {
         //Arrange
-        string filePathValidSrt = @"..\..\..\..\..\Inception2010.srt";
+        string filePathValidSrt = @"..\..\..\..\..\SrtExamples\Valid_Inception2010.srt";
         char fractionalSeparator = ',';
         SubtitleParserRequest subtitleParserRequest = new(filePathValidSrt, fractionalSeparator);
 
-        TimeSpan offset = TimeSpan.FromSeconds(1);
+        TimeSpan offset = TimeSpan.FromSeconds(-1);
 
         string pathFile = @"..\..\..\..\..\";
         string expectedFilePath = Path.Combine(pathFile, "SubtitleSync_ProcessedSubtitles.srt");

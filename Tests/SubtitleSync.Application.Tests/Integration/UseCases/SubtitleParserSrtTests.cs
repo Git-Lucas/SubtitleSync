@@ -10,7 +10,7 @@ namespace SubtitleSync.Application.Tests.Integration.UseCases;
 public class SubtitleParserSrtTests(ITestOutputHelper testOutputHelper)
 {
     private readonly ITestOutputHelper _testOutputHelper = testOutputHelper;
-    private readonly string _filePathValidSrt = @"..\..\..\..\..\TheMatrix1999.srt";
+    private readonly string _filePathValidSrt = @"..\..\..\..\..\SrtExamples\Valid_TheMatrix1999.srt";
     private readonly ISubtitleParser _subtitleParser = new SubtitleParserSrt();
 
     [Fact]
