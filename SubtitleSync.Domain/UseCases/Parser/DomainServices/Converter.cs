@@ -1,36 +1,34 @@
 ﻿using SubtitleSync.Domain.Entities;
 using SubtitleSync.Domain.UseCases.Parser.ResultPattern;
-using SubtitleSync.Domain.ValueObjects;
-using System.Globalization;
 
 namespace SubtitleSync.Domain.UseCases.Parser.DomainServices;
 public class Converter
 {
-    public static SubtitleParserResult Execute(string[] content, char fractionalSeparator)
+    public static SubtitleParserResult Execute(string[] srt, char fractionalSeparator)
     {
-        int index = 0;
-        List<SubtitleLine> lines = [];
+        int line = 0;
+        List<SubtitleLine> subtitleLines = [];
         List<SubtitleParserError> errors = [];
 
-        while (index < content.Length)
+        while (line < srt.Length)
         {
-            string numberSrt = content[index];
-            index++;
+            string numberSrt = srt[line];
+            line++;
 
-            string timecodesSrt = content[index];
-            index++;
+            string timecodesSrt = srt[line];
+            line++;
 
-            var text = new List<string>();
-            while (index < content.Length && !string.IsNullOrWhiteSpace(content[index]))
+            List<string> textsSrt = [];
+            while (line < srt.Length && !string.IsNullOrWhiteSpace(srt[line]))
             {
-                text.Add(content[index]);
-                index++;
+                textsSrt.Add(srt[line]);
+                line++;
             }
-            index++;
+            line++;
 
             try
             {
-                lines.Add(new SubtitleLine(numberSrt, timecodesSrt, fractionalSeparator, string.Join("\n", text)));
+                subtitleLines.Add(new SubtitleLine(numberSrt, timecodesSrt, fractionalSeparator, textsSrt));
             }
             catch (Exception ex)
             {
@@ -44,7 +42,7 @@ public class Converter
             return new SubtitleParserFailure(errors);
         }
 
-        Subtitle subtitle = new(lines);
+        Subtitle subtitle = new(subtitleLines);
         return new SubtitleParserSuccess(subtitle);
 
     }

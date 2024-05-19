@@ -14,10 +14,10 @@ public class SubtitleLine
         Text = text;
     }
 
-    public SubtitleLine(string numberSrt, string timecodesSrt, char fractionalSeparator, string text)
+    public SubtitleLine(string numberSrt, string timecodesSrt, char fractionalSeparator, IEnumerable<string> texts)
     {
         Number = Number.CreateFromSrt(numberSrt);
         Duration = Duration.CreateFromSrt(timecodesSrt, fractionalSeparator);
-        Text = text;
+        Text = string.Join("\n", texts);
     }
 }
