@@ -12,7 +12,7 @@ public record Duration
         EndTime = endTime;
     }
 
-    private void Validate(TimeSpan startTime, TimeSpan endTime)
+    private static void Validate(TimeSpan startTime, TimeSpan endTime)
     {
         if (startTime > endTime)
         {

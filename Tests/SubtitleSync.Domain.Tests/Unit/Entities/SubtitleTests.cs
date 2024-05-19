@@ -47,4 +47,24 @@ public class SubtitleTests
         ArgumentException exception = Assert.Throws<ArgumentException>(() => new Subtitle(lines));
         Assert.Equal($"O número {repeatedNumber} está repetido.", exception.Message);
     }
+
+    [Fact]
+    public void ApplyOffset_WhenOffsetLessThanStartTimeOfFirstSubtitleLine_ThrowsArgumentException()
+    {
+        TimeSpan startTimeFirstSubtitleLine = TimeSpan.FromSeconds(1);
+        TimeSpan invalidOffset = TimeSpan.FromSeconds(-2);
+        IEnumerable<SubtitleLine> lines =
+        [
+            new SubtitleLine(number: 4,
+                             startTime: startTimeFirstSubtitleLine,
+                             endTime: TimeSpan.FromSeconds(3),
+                             text: "- How did he do that?\r\n- Made him an offer he couldn't refuse.")
+        ];
+        Subtitle subtitle = new(lines);
+
+        ArgumentException exception = Assert.Throws<ArgumentException>(() => subtitle.ApplyOffset(invalidOffset));
+        Assert.Equal("A aplicação do deslocamento temporal não pode provocar um tempo de início menor que 0. " +
+                     $"Tempo inicial das legendas: 00:00:01 | Deslocamento temporal solicitado: -00:00:02",
+                     exception.Message);
+    }
 }
