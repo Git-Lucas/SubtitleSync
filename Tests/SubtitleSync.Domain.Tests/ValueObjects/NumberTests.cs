@@ -1,6 +1,6 @@
 ﻿using SubtitleSync.Domain.ValueObjects;
 
-namespace SubtitleSync.Domain.Tests.Unit.ValueObjects;
+namespace SubtitleSync.Domain.Tests.ValueObjects;
 public class NumberTests
 {
     [Fact]

@@ -3,7 +3,7 @@ using SubtitleSync.Domain.Entities;
 using SubtitleSync.Domain.UseCases.Processor;
 using SubtitleSync.Domain.UseCases.Processor.DTOs;
 
-namespace SubtitleSync.Application.Tests.Integration.UseCases;
+namespace SubtitleSync.Application.Tests.UseCases;
 public class SubtitleProcessorTests
 {
     private readonly ISubtitleProcessor _subtitleProcessor = new SubtitleProcessor();

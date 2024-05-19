@@ -1,6 +1,6 @@
 ﻿using SubtitleSync.Domain.Entities;
 
-namespace SubtitleSync.Domain.Tests.Unit.Entities;
+namespace SubtitleSync.Domain.Tests.Entities;
 public class SubtitleTests
 {
     [Fact]

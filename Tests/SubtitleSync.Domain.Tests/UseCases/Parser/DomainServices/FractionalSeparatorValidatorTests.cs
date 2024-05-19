@@ -1,6 +1,6 @@
 ﻿using SubtitleSync.Domain.UseCases.Parser.DomainServices;
 
-namespace SubtitleSync.Domain.Tests.Unit.UseCases.Parser.DomainServices;
+namespace SubtitleSync.Domain.Tests.UseCases.Parser.DomainServices;
 public class FractionalSeparatorValidatorTests
 {
     [Fact]

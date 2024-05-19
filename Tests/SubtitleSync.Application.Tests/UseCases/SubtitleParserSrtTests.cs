@@ -6,7 +6,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using Xunit.Abstractions;
 
-namespace SubtitleSync.Application.Tests.Integration.UseCases;
+namespace SubtitleSync.Application.Tests.UseCases;
 public class SubtitleParserSrtTests(ITestOutputHelper testOutputHelper)
 {
     private readonly ITestOutputHelper _testOutputHelper = testOutputHelper;

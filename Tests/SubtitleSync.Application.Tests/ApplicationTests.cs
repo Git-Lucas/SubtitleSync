@@ -7,7 +7,7 @@ using SubtitleSync.Domain.UseCases.Processor.DTOs;
 using SubtitleSync.Domain.UseCases.Writer;
 using SubtitleSync.Domain.UseCases.Writer.DTOs;
 
-namespace SubtitleSync.Application.Tests.Integration;
+namespace SubtitleSync.Application.Tests;
 public class ApplicationTests
 {
     private readonly ISubtitleParser _subtitleParser = new SubtitleParserSrt();
