@@ -1,5 +1,6 @@
 ﻿using SubtitleSync.Application.UseCases;
 using SubtitleSync.Domain.UseCases.Parser;
+using SubtitleSync.Domain.UseCases.Parser.DomainServices;
 using SubtitleSync.Domain.UseCases.Parser.DTOs;
 using SubtitleSync.Domain.UseCases.Parser.ResultPattern;
 using System.Text.Encodings.Web;
@@ -13,7 +14,7 @@ public class SubtitleParserSrtTests(ITestOutputHelper testOutputHelper)
     private readonly string _filePathValidSrt = @"..\..\..\..\..\SrtExamples\Valid_TheMatrix1999.srt";
     private readonly string _filePathInvalidLinesSrt = @"..\..\..\..\..\SrtExamples\InvalidLines_TheMatrix1999.srt";
     private readonly string _filePathInvalidSubtitleSrt = @"..\..\..\..\..\SrtExamples\InvalidSubtitle_Inception2010.srt";
-    private readonly ISubtitleParser _subtitleParser = new SubtitleParserSrt();
+    private readonly ISubtitleParser _subtitleParser = new SubtitleParserSrt(new Converter());
 
     [Fact]
     public async Task ParseAsync_WhenValidFile_ReturnsTypeParserSuccess()

@@ -9,7 +9,7 @@ public class Converter
 
     public SubtitleParserResult ExecuteSrt(string[] srt, char fractionalSeparator)
     {
-        ConvertLines(srt, fractionalSeparator);
+        TryConvertLines(srt, fractionalSeparator);
 
         if (_invalidLines.Count > 0)
         {
@@ -27,7 +27,7 @@ public class Converter
         }
     }
 
-    private void ConvertLines(string[] srt, char fractionalSeparator)
+    private void TryConvertLines(string[] srt, char fractionalSeparator)
     {
         int line = 0;
 

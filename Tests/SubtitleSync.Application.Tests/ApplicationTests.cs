@@ -1,5 +1,6 @@
 ﻿using SubtitleSync.Application.UseCases;
 using SubtitleSync.Domain.UseCases.Parser;
+using SubtitleSync.Domain.UseCases.Parser.DomainServices;
 using SubtitleSync.Domain.UseCases.Parser.DTOs;
 using SubtitleSync.Domain.UseCases.Parser.ResultPattern;
 using SubtitleSync.Domain.UseCases.Processor;
@@ -10,7 +11,7 @@ using SubtitleSync.Domain.UseCases.Writer.DTOs;
 namespace SubtitleSync.Application.Tests;
 public class ApplicationTests
 {
-    private readonly ISubtitleParser _subtitleParser = new SubtitleParserSrt();
+    private readonly ISubtitleParser _subtitleParser = new SubtitleParserSrt(new Converter());
     private readonly ISubtitleProcessor _subtitleProcessor = new SubtitleProcessor();
     private readonly ISubtitleWriter _subtitleWriter = new SubtitleWriterSrt();
 
