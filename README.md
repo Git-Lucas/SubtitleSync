@@ -37,6 +37,24 @@ Para rodar os testes, execute:
    ```
 ![](https://github.com/Git-Lucas/SubtitleSync/blob/master/imgs/tests.png)
 ![](https://github.com/Git-Lucas/SubtitleSync/blob/master/imgs/tests-1.png)
+#### Unit Tests (Projeto 'SubtitleSync.Domain.Tests')
+Projeto que contém os testes a nível de unidade (entidades, serviços de domínio, value objects).
+
+#### Integration Tests (Projeto 'SubtitleSync.Application.Tests')
+Projeto que contém os testes a nível de integração (com interação entre diferentes camadas do Clean Architecture).
+- É possível visualizar os testes de cada funcionalidade da aplicação no diretório 'UseCases';
+- Foi criada uma classe de testes denominada 'ApplicationTests', que tem por objetivo testar um fluxo completo de uso das funcionalidades dispostas pela aplicação, em sequência:
+	1. Desde a importação do arquivo que está disponibilizado em 'SrtExamples\Valid_Inception2010.srt';
+	2. Executa o ajuste de tempo de -1 segundo (um segundo negativo) em todos os timecodes da legenda;
+	3. E por fim, salva este arquivo na raiz da aplicação;
+	4. Em relação ao ponto 'iii', por padrão, a aplicação exclui o arquivo criado ao final do teste. Para alterar este comportamento e visualizar o arquivo que foi salvo pela aplicação com o resultado da ação 'ii', comente as seguintes linhas, no método 'ParserProcessorAndWriter_WhenValidFile_ShouldCreateProcessedFile':
+		 ```bash
+	   if (File.Exists(expectedFilePath))
+        {
+            File.Delete(expectedFilePath);
+        }
+	   ``` 
+	5. Sem a execução das linhas acima, a aplicação criará um arquivo denominado 'SubtitleSync_ProcessedSubtitles.srt' na raiz da solução.
 
 
 # Aplicação
