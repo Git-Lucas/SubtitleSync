@@ -1,4 +1,4 @@
-# MoviesAndShowsCatalog
+# SubtitleSync
 <table>
 <tr>
 <td>
