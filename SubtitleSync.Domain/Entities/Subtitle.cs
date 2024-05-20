@@ -39,8 +39,8 @@ public class Subtitle
         if (firstLine.Duration.StartTime.Add(offset) < TimeSpan.Zero)
         {
             throw new ArgumentException(
-                "A aplicação do deslocamento temporal não pode provocar um tempo de início menor que 0. " +
-                $"Tempo inicial das legendas: {firstLine.Duration.StartTime} | Deslocamento temporal solicitado: {offset}");
+                "A aplicação do ajuste de tempo não pode provocar um tempo de início menor que 0. " +
+                $"Tempo inicial das legendas: {firstLine.Duration.StartTime} | Ajuste de tempo solicitado: {offset}");
         }
 
         Lines

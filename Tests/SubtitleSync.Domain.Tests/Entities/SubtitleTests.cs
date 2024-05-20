@@ -63,8 +63,8 @@ public class SubtitleTests
         Subtitle subtitle = new(lines);
 
         ArgumentException exception = Assert.Throws<ArgumentException>(() => subtitle.ApplyOffset(invalidOffset));
-        Assert.Equal("A aplicação do deslocamento temporal não pode provocar um tempo de início menor que 0. " +
-                     $"Tempo inicial das legendas: 00:00:01 | Deslocamento temporal solicitado: -00:00:02",
+        Assert.Equal("A aplicação do ajuste de tempo não pode provocar um tempo de início menor que 0. " +
+                     $"Tempo inicial das legendas: 00:00:01 | Ajuste de tempo solicitado: -00:00:02",
                      exception.Message);
     }
 }

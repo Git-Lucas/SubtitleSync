@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		SrtExamples\InvalidLines_TheMatrix1999.srt = SrtExamples\InvalidLines_TheMatrix1999.srt
 		SrtExamples\InvalidSubtitle_Inception2010.srt = SrtExamples\InvalidSubtitle_Inception2010.srt
+		README.md = README.md
 		SrtExamples\Valid_Inception2010.srt = SrtExamples\Valid_Inception2010.srt
 		SrtExamples\Valid_TheMatrix1999.srt = SrtExamples\Valid_TheMatrix1999.srt
 	EndProjectSection
