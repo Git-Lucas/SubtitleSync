@@ -19,7 +19,7 @@
    git clone https://github.com/Git-Lucas/SubtitleSync.git
    ```
 
-2. Acesse o diretório da aplicação:
+2. Acesse o diretório da solução:
    ```bash
    cd SubtitleSync
    ```
@@ -31,10 +31,12 @@ Para compilar o projeto, execute:
    ```
 
 ### Testes
-Para rodar os testes unitários, execute:
+Para rodar os testes, execute:
    ```bash
    dotnet test
    ```
+![](https://github.com/Git-Lucas/SubtitleSync/blob/master/imgs/tests.png)
+![](https://github.com/Git-Lucas/SubtitleSync/blob/master/imgs/tests-1.png)
 
 
 # Aplicação
