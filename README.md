@@ -3,7 +3,7 @@
 <tr>
 <td>
   SubtitleSync é uma biblioteca desenvolvida em C# para manipulação de arquivos de legendas no formato SubRip (.srt). Esta biblioteca permite a leitura, ajuste de tempo e gravação de arquivos de legendas, garantindo sincronização com o conteúdo de áudio/vídeo.
-  <br/><br/> Tecnologias utilizadas: C#, .NET 8, xUnit, SOLID principles, Value Objects, Clean Architecture.
+  <br/><br/> Tecnologias utilizadas: C#, .NET 8, xUnit (Unit and Integration Tests), SOLID principles, Value Objects, Design Pattern Result, Clean Architecture.
 </td>
 </tr>
 </table>
