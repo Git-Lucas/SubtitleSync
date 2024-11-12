@@ -1,5 +1,5 @@
 ﻿namespace SubtitleSync.Domain.UseCases.Parser.DomainServices;
-public class FileExtensionValidator
+public static class FileExtensionValidator
 {
     private static readonly string[] SupportedFileExtensions = [".srt"];
 

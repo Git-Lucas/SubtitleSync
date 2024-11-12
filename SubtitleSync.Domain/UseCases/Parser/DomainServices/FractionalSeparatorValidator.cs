@@ -1,5 +1,5 @@
 ﻿namespace SubtitleSync.Domain.UseCases.Parser.DomainServices;
-public class FractionalSeparatorValidator
+public static class FractionalSeparatorValidator
 {
     private static char[] SupportedFractionalSeparators => [','];
 

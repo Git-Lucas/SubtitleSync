@@ -1,13 +1,10 @@
 ﻿using SubtitleSync.Application.UseCases;
 using SubtitleSync.Domain.Entities;
 using SubtitleSync.Domain.UseCases.Processor;
-using SubtitleSync.Domain.UseCases.Processor.DTOs;
 
 namespace SubtitleSync.Application.Tests.UseCases;
 public class SubtitleProcessorTests
 {
-    private readonly ISubtitleProcessor _subtitleProcessor = new SubtitleProcessor();
-
     [Fact]
     public void ApplyOffset_WhenValidOffset_ReturnsUpdatedSubtitle()
     {
@@ -26,7 +23,7 @@ public class SubtitleProcessorTests
         TimeSpan offset = TimeSpan.FromSeconds(1);
         ApplyOffsetRequest dto = new(subtitle, offset);
 
-        _subtitleProcessor.ApplyOffset(dto);
+        SubtitleProcessor.ApplyOffset(dto);
 
         Assert.Equal(TimeSpan.FromSeconds(9), subtitle.Lines.First(x => x.Number.Value == 1).Duration.StartTime);
         Assert.Equal(TimeSpan.FromSeconds(11), subtitle.Lines.First(x => x.Number.Value == 1).Duration.EndTime);

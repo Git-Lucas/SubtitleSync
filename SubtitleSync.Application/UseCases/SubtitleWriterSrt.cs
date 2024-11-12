@@ -1,8 +1,7 @@
 ﻿using SubtitleSync.Domain.UseCases.Writer;
-using SubtitleSync.Domain.UseCases.Writer.DTOs;
 
 namespace SubtitleSync.Application.UseCases;
-public class SubtitleWriterSrt : ISubtitleWriter
+public class SubtitleWriterSrt
 {
     private readonly string _fileName = "SubtitleSync_ProcessedSubtitles.srt";
 

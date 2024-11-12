@@ -1,12 +1,11 @@
 ﻿using SubtitleSync.Application.UseCases;
 using SubtitleSync.Domain.Entities;
 using SubtitleSync.Domain.UseCases.Writer;
-using SubtitleSync.Domain.UseCases.Writer.DTOs;
 
 namespace SubtitleSync.Application.Tests.UseCases;
 public class SubtitleWriterSrtTests
 {
-    private readonly ISubtitleWriter _subtitleWriter = new SubtitleWriterSrt();
+    private readonly SubtitleWriterSrt _subtitleWriter = new();
 
     [Fact]
     public async Task ExecuteAsync_WhenValidSubtitleAndPath_ShouldSaveFile()

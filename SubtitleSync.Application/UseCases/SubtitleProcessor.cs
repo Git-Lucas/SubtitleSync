@@ -1,10 +1,9 @@
 ﻿using SubtitleSync.Domain.UseCases.Processor;
-using SubtitleSync.Domain.UseCases.Processor.DTOs;
 
 namespace SubtitleSync.Application.UseCases;
-public class SubtitleProcessor : ISubtitleProcessor
+public static class SubtitleProcessor
 {
-    public void ApplyOffset(ApplyOffsetRequest dto)
+    public static void ApplyOffset(ApplyOffsetRequest dto)
     {
         dto.Subtitle.ApplyOffset(dto.Offset);
     }

@@ -1,19 +1,15 @@
 ﻿using SubtitleSync.Application.UseCases;
 using SubtitleSync.Domain.UseCases.Parser;
 using SubtitleSync.Domain.UseCases.Parser.DomainServices;
-using SubtitleSync.Domain.UseCases.Parser.DTOs;
 using SubtitleSync.Domain.UseCases.Parser.ResultPattern;
 using SubtitleSync.Domain.UseCases.Processor;
-using SubtitleSync.Domain.UseCases.Processor.DTOs;
 using SubtitleSync.Domain.UseCases.Writer;
-using SubtitleSync.Domain.UseCases.Writer.DTOs;
 
 namespace SubtitleSync.Application.Tests;
 public class ApplicationTests
 {
-    private readonly ISubtitleParser _subtitleParser = new SubtitleParserSrt(new Converter());
-    private readonly ISubtitleProcessor _subtitleProcessor = new SubtitleProcessor();
-    private readonly ISubtitleWriter _subtitleWriter = new SubtitleWriterSrt();
+    private readonly SubtitleParserSrt _subtitleParser = new(new Converter());
+    private readonly SubtitleWriterSrt _subtitleWriter = new();
 
     [Fact]
     public async Task ParserProcessorAndWriter_WhenValidFile_ShouldCreateProcessedFile()
@@ -35,7 +31,7 @@ public class ApplicationTests
         List<TimeSpan> endTimesBeforeProcessing = subtitleParserSuccess.Subtitle.Lines.Select(x => x.Duration.EndTime).ToList();
 
         ApplyOffsetRequest applyOffsetRequest = new(subtitleParserSuccess.Subtitle, offset);
-        _subtitleProcessor.ApplyOffset(applyOffsetRequest);
+        SubtitleProcessor.ApplyOffset(applyOffsetRequest);
         List<TimeSpan> startTimesAfterProcessing = subtitleParserSuccess.Subtitle.Lines.Select(x => x.Duration.StartTime).ToList();
         List<TimeSpan> endTimesAfterProcessing = subtitleParserSuccess.Subtitle.Lines.Select(x => x.Duration.EndTime).ToList();
 
